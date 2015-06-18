@@ -1,5 +1,5 @@
 import styles from './styles/main.styl'
-import Router from 'ampersand-router'
+import Router from './router'
 
 window.app = {
   init () {
