@@ -1,1 +1,1 @@
-Work repo for walkthrough http://learn.humanjavascript.com/ by [@henrik](https://github.com/HenrikJoreteg)
+Working repo for walkthrough http://learn.humanjavascript.com/ by [@HenrikJoreteg](https://github.com/HenrikJoreteg)
