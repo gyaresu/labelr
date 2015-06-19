@@ -1,9 +1,14 @@
 import React from 'react'
 import NavHelper from './components/nav-helper'
+import ampersandMixin from 'ampersand-react-mixin'
 
 export default React.createClass({
+  mixins: [ampersandMixin], // https://facebook.github.io/react/docs/reusable-components.html
+
   displayName: 'Layout',
   render () {
+    const {me} = this.props
+
     return (
       <NavHelper>
         <nav className='top-nav top-nav-light cf' role='navigation'>
@@ -12,7 +17,7 @@ export default React.createClass({
           <ul className='list-unstyled list-inline cf'>
             <li>Labelr</li>
             <li><a href='/repos'>Repos</a></li>
-            <li className='pull-right'><a href='/'>Logout</a></li>
+            <li className='pull-right'>{me.login} <a href='/logout'>Logout</a></li>
           </ul>
         </nav>
         <div className='container'>

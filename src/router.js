@@ -12,7 +12,7 @@ export default Router.extend({
   renderPage (page, opts = {layout: true}) {
     if (opts.layout) {
       page = (
-        <Layout>
+        <Layout me={app.me}>
           {page}
         </Layout>
       )
@@ -44,7 +44,8 @@ export default Router.extend({
     })
   },
   logout () {
-
+    window.localStorage.clear()
+    window.location = '/'
   },
   authCallback (query) {
     query = qs.parse(query)
@@ -57,9 +58,10 @@ export default Router.extend({
         json: true
       }, (err, resp, body) => {
         if (err) {
-          console.error(err)
+          console.error('Something broke ', err)
         }
-        console.log(body)
+        app.me.token = body.token
+        this.redirectTo('/repos')
       })
     }
   }
