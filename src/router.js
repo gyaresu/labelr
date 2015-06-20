@@ -31,7 +31,7 @@ export default Router.extend({
     this.renderPage(<PublicPage/>, {layout: false})
   },
   repos () {
-    this.renderPage(<ReposPage/>)
+    this.renderPage(<ReposPage repos={app.me.repos}/>)
   },
   login () {
     const state = uuid()

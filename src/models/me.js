@@ -1,12 +1,13 @@
 import Model from 'ampersand-model'
+import RepoCollection from './repo-collection'
+import githubMixin from '../helpers/github-mixin'
 
-export default Model.extend({
+export default Model.extend(githubMixin, {
   url: 'https://api.github.com/user',
 
   initialize () {
     this.token = window.localStorage.token
     this.on('change:token', this.onChangeToken)
-    this.fetchInitialData()
   },
 
   props: {
@@ -19,21 +20,19 @@ export default Model.extend({
     token: 'string'
   },
 
+  collections: {
+    repos: RepoCollection
+  },
+
   onChangeToken () {
     window.localStorage.token = this.token
+    this.fetchInitialData()
   },
 
   fetchInitialData () {
     if (this.token) {
       this.fetch()
-    }
-  },
-
-  ajaxConfig () {
-    return {
-      headers: {
-        Authorization: 'token ' + this.token
-      }
+      this.repos.fetch()
     }
   }
 })
